@@ -11,15 +11,18 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    rules: [{
+    rules: [
+    {
       test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
       use: {
-        loader: path.resolve(__dirname, './loaders/replaceLoader.js'),
+        loader: path.resolve(__dirname, './loaders/myBabelLoader.js'),
         options: {
-          name: 'echo'
+          presets: ['@babel/preset-env']
         }
       }
-    }]
+    }
+    ]
   },
   plugins: [new HelloWorldPlugin({ options: true })]
 }
